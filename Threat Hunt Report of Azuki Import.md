@@ -170,7 +170,8 @@ Time: 2025-11-19T19:05:33.7665036Z
 
 **Flag Answer:** **C:\ProgramData\WindowsCache**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image4.png" style="width:6.5in;height:2.27431in"/>
+<img width="1120" height="408" alt="image" src="https://github.com/user-attachments/assets/5b77f01b-8ec8-4245-8e26-09814eb21615" />
+
 
 ### 🚩Flag 5: DEFENCE EVASION – File Extension Exclusions
 
@@ -201,7 +202,8 @@ Time: 2025-11-19T18:49:27.7301011Z
 
 **Flag Answer:** **3**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image5.png" style="width:6.53153in;height:1.16935in" />
+<img width="1177" height="363" alt="image" src="https://github.com/user-attachments/assets/95d2ca15-5b7e-42b9-8324-d6f7332ad985" />
+
 
 ### 🚩Flag 6: DEFENCE EVASION – Temporary Folder Exclusion
 
@@ -232,7 +234,8 @@ Time: 2025-11-19T18:49:27.6830204Z
 
 **Flag Answer:** **C:\Users\KENJI~1.SAT\AppData\Local\Temp**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image6.png" style="width:6.5in;height:1.81528in" />
+<img width="1159" height="328" alt="image" src="https://github.com/user-attachments/assets/7f9e2a73-e516-4bd0-85a3-b6bddc23c0f2" />
+
 
 ### 🚩Flag 7: DEFENCE EVASION – Download Utility Abuse
 
@@ -264,7 +267,8 @@ Time: 2025-11-19T19:06:58.5778439Z
 
 **Flag Answer:** **certutil.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image7.png" style="width:6.5in;height:1.68611in" />
+<img width="1299" height="343" alt="image" src="https://github.com/user-attachments/assets/a8ef58ef-5e30-4bfc-948b-282dff2d7c39" />
+
 
 ### 🚩Flag 8: PERSISTENCE – Scheduled Task Name
 
@@ -296,7 +300,8 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 **Flag Answer:** **Windows Update Check**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image8.png" style="width:6.5in;height:2.28125in" />
+<img width="1128" height="389" alt="image" src="https://github.com/user-attachments/assets/ed5b98d1-4b7a-4ca9-b30b-854208fe5a36" />
+
 
 ### 🚩Flag 9: PERSISTENCE – Scheduled Task Target
 
@@ -328,7 +333,8 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 **Flag Answer:** **C:\ProgramData\WindowsCache\svchost.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image9.png" style="width:6.5in;height:2.15208in" />
+<img width="1137" height="371" alt="image" src="https://github.com/user-attachments/assets/ae0336f5-53b9-40ac-be25-dcbaffccf6c7" />
+
 
 ### 🚩Flag 10: COMMAND & CONTROL – C2 Server Address
 
@@ -358,7 +364,8 @@ Time: 2025-11-19T19:06:58.7993762Z
 
 **Flag Answer:** **78.141.196.6**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image10.png" style="width:6.31491in;height:1.33169in" />
+<img width="1172" height="376" alt="image" src="https://github.com/user-attachments/assets/f843820e-d215-4a5e-a015-e40bc471e677" />
+
 
 ### 🚩Flag 11: COMMAND & CONTROL – C2 Communication Port
 
@@ -392,7 +399,8 @@ Time: 2025-11-19T19:11:04.1766386Z
 
 **Flag Answer: 443**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image11.png" style="width:6.53171in;height:0.90678in" />
+<img width="1162" height="226" alt="image" src="https://github.com/user-attachments/assets/f12397c7-24fb-466e-a3c5-7d9730617162" />
+
 
 ### 🚩Flag 12: CREDENTIAL ACCESS – Credential Theft Tool
 
@@ -428,7 +436,8 @@ Time: 2025-11-19T19:07:21.0804181Z
 
 **Flag Answer: mm.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image12.png" style="width:6.5in;height:2.09931in" />
+<img width="1107" height="355" alt="image" src="https://github.com/user-attachments/assets/7e6cf284-0cb7-464b-867a-592cb5cb3232" />
+
 
 ### 🚩Flag 13: CREDENTIAL ACCESS – Memory Extraction Module
 
@@ -464,7 +473,8 @@ Time: 2025-11-19T19:08:26.2804285Z
 
 **Flag Answer: sekurlsa::logonpasswords**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image13.png" style="width:6.5in;height:2.17222in" />
+<img width="1096" height="363" alt="image" src="https://github.com/user-attachments/assets/689daf3e-76a6-489b-a9c5-f15da88d6da4" />
+
 
 ### 🚩Flag 14: COLLECTION – Data Staging Archive
 
@@ -500,7 +510,8 @@ Time: 2025-11-19T19:09:21.3267384Z
 
 **Flag Answer: export-data.zip**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image14.png" style="width:6.68618in;height:1.52465in" />
+<img width="1412" height="332" alt="image" src="https://github.com/user-attachments/assets/70d32dda-d461-4d9a-adc5-0d2a6dcd0302" />
+
 
 ### 🚩Flag 15: EXFILTRATION – Exfiltration Channel
 
@@ -535,7 +546,8 @@ Time: 2025-11-19T19:09:21.3879432Z
 
 **Flag Answer: discord**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image15.png" style="width:6.5in;height:1.82153in" />
+<img width="1410" height="380" alt="image" src="https://github.com/user-attachments/assets/27a26e94-3065-4081-a47c-bb8e7a41a0cf" />
+
 
 ### 🚩Flag 16: ANTI-FORENSICS – Log Tampering
 
@@ -571,7 +583,8 @@ Time: 2025-11-19T19:11:39.0934399Z
 
 **Flag Answer: Security**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image16.png" style="width:6.5in;height:2.26042in" />
+<img width="1132" height="389" alt="image" src="https://github.com/user-attachments/assets/54b74280-68a2-40e3-b8ad-a15935f3dbcd" />
+
 
 ### 🚩Flag 17: IMPACT – Persistence Account
 
@@ -607,7 +620,8 @@ Time: 2025-11-19T19:09:53.0528848Z
 
 **Flag Answer: support**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image17.png" style="width:6.5in;height:2.55208in" />
+<img width="1099" height="427" alt="image" src="https://github.com/user-attachments/assets/7e3ebbd2-6796-4519-a90a-e1c28fc95ab2" />
+
 
 ### 🚩Flag 18: EXECUTION – Malicious Script
 
@@ -644,7 +658,8 @@ Time: 2025-11-19T18:49:48.7079818Z
 
 **Flag Answer: wupdate.ps1**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image18.png" style="width:6.5in;height:2.16667in" />
+<img width="1144" height="372" alt="image" src="https://github.com/user-attachments/assets/38cf48ae-17f3-4a7c-a793-4869d18ff64b" />
+
 
 ### 🚩Flag 19: LATERAL MOVEMENT – Secondary Target
 
@@ -680,7 +695,8 @@ Time: 2025-11-19T19:10:37.2625077Z
 
 **Flag Answer: 10.1.0.188**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image19.png" style="width:6.5in;height:1.88056in" />
+<img width="1137" height="336" alt="image" src="https://github.com/user-attachments/assets/994a1efa-ab95-4196-b6e8-f42f2aeadb1e" />
+
 
 ### 🚩Flag 20: LATERAL MOVEMENT – Remote Access Tool
 
@@ -716,7 +732,8 @@ Time: 2025-11-19T19:10:41.372526Z
 
 **Flag Answer: mstsc.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image20.png" style="width:6.5in;height:2.21944in" />
+<img width="1134" height="381" alt="image" src="https://github.com/user-attachments/assets/db547b55-9cdf-4943-bfdf-9e4e7351f719" />
+
 
 **🚨 After Action Recommendations**
 
@@ -739,6 +756,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
