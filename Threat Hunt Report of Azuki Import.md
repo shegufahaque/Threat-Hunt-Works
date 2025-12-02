@@ -51,7 +51,7 @@ Multiple failed and successful RDP login attempts originated from an external IP
 **Evidence:**  
 DeviceLogonEvents revealed repeated remote logon attempts from IP **88.97.178.12**, which ultimately resulted in a successful logon by the compromised user.
 
-**Query Used:**
+** KQL Query Used:**
 ```kql
 DeviceLogonEvents 
 | where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
@@ -83,23 +83,18 @@ The compromised credentials belonged to **kenji.sato**, whose account successful
 **Evidence:**  
 DeviceLogonEvents showed a successful remote logon by **kenji.sato** from the malicious IP during the incident timeframe.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceLogonEvents
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where DeviceName contains "azuki-sl"
-
-\| where AccountName == "kenji.sato"
-
-\| where RemoteIP == "88.97.178.12"
-
-\| where ActionType == "LogonSuccess"
-
-\| project Timestamp, AccountName, RemoteIP, DeviceName, LogonType, ActionType
-
-\| order by Timestamp asc
+```kql
+DeviceLogonEvents 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where DeviceName contains "azuki-sl" 
+| where AccountName == "kenji.sato" 
+| where RemoteIP == "88.97.178.12" 
+| where ActionType == "LogonSuccess" 
+| project Timestamp, AccountName, RemoteIP, DeviceName, LogonType, ActionType 
+| order by Timestamp asc 
+```
 
 **Why this matters:**  
 Identifying compromised credentials enables immediate remediation actions such as password resets, account audits, and privilege reviews.
@@ -108,7 +103,8 @@ Time: 2025-11-19T18:36:18.503997Z
 
 **Flag Answer:** **kenji.sato**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image2.png" style="width:6.64023in;height:1.08065in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img width="1204" height="218" alt="image" src="https://github.com/user-attachments/assets/24cae701-b58f-4bed-821f-a30074900b42" />
+
 
 ### 🚩Flag 3: DISCOVERY – Network Reconnaissance
 
@@ -121,21 +117,17 @@ The attacker executed **ARP.EXE -a** to enumerate network devices and associated
 **Evidence:**  
 DeviceProcessEvents logs show execution of the ARP utility with the “-a” argument shortly after initial access.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine has_all ("arp", "a")
-
-\| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine has_all ("arp", "a") 
+| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine 
+| order by Timestamp asc 
+```
 
 **Why this matters:**  
 Network reconnaissance helps attackers map internal systems and plan lateral movement. Detecting this behavior is critical for early containment.
@@ -144,7 +136,8 @@ Time: 2025-11-19T19:04:01.773778Z
 
 **Flag Answer:** **"ARP.EXE" -a**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image3.png" style="width:6.5in;height:2.11944in" alt="A black screen with white text AI-generated content may be incorrect." />
+<img width="1173" height="377" alt="image" src="https://github.com/user-attachments/assets/5c3b59fe-2324-4114-a1cb-4f328f2e3935" />
+
 
 ### 🚩Flag 4: DEFENCE EVASION – Malware Staging Directory
 
@@ -807,4 +800,5 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
