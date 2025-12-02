@@ -759,7 +759,7 @@ Time: 2025-11-19T19:10:41.372526Z
 
 ---
 
-**🚨 After Action Recommendations**
+**🛡️ After Action Recommendations**
 
 - **Reset all compromised credentials**, including kenji.sato and any cached tokens (cmdkey).
 
@@ -780,6 +780,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
