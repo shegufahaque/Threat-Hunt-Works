@@ -1,9 +1,9 @@
 **<u>Threat Hunt Report of Compromised IT Admin Workstation (Azuki Import/Export)</u>**
 
-Incident Date: 19 November, 2025  
-Analyst: Shegufa Haque  
-Compromised Host: azuki-sl  
-Compromised Account: kenji.sato
+**Incident Date:** 19 November, 2025  
+**Analyst:** Shegufa Haque  
+**Compromised Host:** azuki-sl  
+**Compromised Account:** kenji.sato
 
 **📌 Executive Summary**
 
@@ -40,7 +40,7 @@ The investigation confirms that this was a **highly coordinated, credential-base
 
 **🎯 Flag-by-Flag Findings**
 
-**Flag 1: INITIAL ACCESS – Remote Access Source**
+### 🚩Flag 1: INITIAL ACCESS – Remote Access Source
 
 **Objective:**  
 Identify the external source IP used to establish the initial Remote Desktop Protocol (RDP) connection into the compromised system.
@@ -52,20 +52,15 @@ Multiple failed and successful RDP login attempts originated from an external IP
 DeviceLogonEvents revealed repeated remote logon attempts from IP **88.97.178.12**, which ultimately resulted in a successful logon by the compromised user.
 
 **Query Used:**
-
-DeviceLogonEvents
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where DeviceName contains "azuki-sl"
-
-\| where ActionType == "LogonAttempted"
-
-\| where RemoteIP != "-"
-
-\| summarize FailedAttempts = count() by RemoteIP,AccountName,DeviceName, bin(Timestamp, 15m)
-
-\| order by FailedAttempts desc
+```kql
+DeviceLogonEvents 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where DeviceName contains "azuki-sl" 
+| where ActionType == "LogonAttempted" 
+| where RemoteIP != "-" 
+| summarize FailedAttempts = count() by RemoteIP,AccountName,DeviceName, bin(Timestamp, 15m) 
+| order by FailedAttempts desc 
+```
 
 **Why this matters:**  
 Identifying the attacker’s entry point helps with attribution, blocking, and understanding the origin of the intrusion. This is critical for preventing reinfection.
@@ -74,9 +69,10 @@ Identifying the attacker’s entry point helps with attribution, blocking, and u
 
 **Flag Answer:** **88.97.178.12**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image1.png" style="width:6.72747in;height:1.33759in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img width="1183" height="223" alt="image" src="https://github.com/user-attachments/assets/815ca096-1fe5-4620-9809-88516fa92bf4" />
 
-**Flag 2: INITIAL ACCESS – Compromised User Account**
+
+### 🚩Flag 2: INITIAL ACCESS – Compromised User Account
 
 **Objective:**  
 Determine which user account was successfully used by the attacker to authenticate during the RDP intrusion.
@@ -114,7 +110,7 @@ Time: 2025-11-19T18:36:18.503997Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image2.png" style="width:6.64023in;height:1.08065in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 3: DISCOVERY – Network Reconnaissance**
+### 🚩Flag 3: DISCOVERY – Network Reconnaissance
 
 **Objective:**  
 Identify the command used by the attacker to enumerate network neighbors and discover additional systems.
@@ -150,7 +146,7 @@ Time: 2025-11-19T19:04:01.773778Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image3.png" style="width:6.5in;height:2.11944in" alt="A black screen with white text AI-generated content may be incorrect." />
 
-**Flag 4: DEFENCE EVASION – Malware Staging Directory**
+### 🚩Flag 4: DEFENCE EVASION – Malware Staging Directory
 
 **Objective:**  
 Identify the primary directory where the attacker stored malicious payloads.
@@ -188,7 +184,7 @@ Time: 2025-11-19T19:05:33.7665036Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image4.png" style="width:6.5in;height:2.27431in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 5: DEFENCE EVASION – File Extension Exclusions**
+### 🚩Flag 5: DEFENCE EVASION – File Extension Exclusions
 
 **Objective:**  
 Determine how many file extensions the attacker excluded from Windows Defender scanning.
@@ -222,7 +218,7 @@ Time: 2025-11-19T18:49:27.7301011Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image5.png" style="width:6.53153in;height:1.16935in" alt="A screenshot of a computer program AI-generated content may be incorrect." />
 
-**Flag 6: DEFENCE EVASION – Temporary Folder Exclusion**
+### 🚩Flag 6: DEFENCE EVASION – Temporary Folder Exclusion
 
 **Objective:**  
 Identify which temporary directory the attacker excluded from Windows Defender.
@@ -256,7 +252,7 @@ Time: 2025-11-19T18:49:27.6830204Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image6.png" style="width:6.5in;height:1.81528in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 7: DEFENCE EVASION – Download Utility Abuse**
+### 🚩Flag 7: DEFENCE EVASION – Download Utility Abuse
 
 **Objective:**  
 Identify the Windows-native binary abused by the attacker to download malicious files.
@@ -292,7 +288,7 @@ Time: 2025-11-19T19:06:58.5778439Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image7.png" style="width:6.5in;height:1.68611in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 8: PERSISTENCE – Scheduled Task Name**
+### 🚩Flag 8: PERSISTENCE – Scheduled Task Name
 
 **Objective:**  
 Determine the name of the malicious scheduled task created for persistence.
@@ -328,7 +324,7 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image8.png" style="width:6.5in;height:2.28125in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 9: PERSISTENCE – Scheduled Task Target**
+### 🚩Flag 9: PERSISTENCE – Scheduled Task Target
 
 **Objective:**  
 Identify which executable was configured to run via the malicious scheduled task.
@@ -364,7 +360,7 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image9.png" style="width:6.5in;height:2.15208in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 10: COMMAND & CONTROL – C2 Server Address**
+### 🚩Flag 10: COMMAND & CONTROL – C2 Server Address
 
 **Objective:**  
 Identify the attacker’s command-and-control (C2) IP address used to communicate with the compromised host.
@@ -396,7 +392,7 @@ Time: 2025-11-19T19:06:58.7993762Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image10.png" style="width:6.31491in;height:1.33169in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 11: COMMAND & CONTROL – C2 Communication Port**
+### 🚩Flag 11: COMMAND & CONTROL – C2 Communication Port
 
 **Objective:**
 
@@ -432,7 +428,7 @@ Time: 2025-11-19T19:11:04.1766386Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image11.png" style="width:6.53171in;height:0.90678in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 12: CREDENTIAL ACCESS – Credential Theft Tool**
+### 🚩Flag 12: CREDENTIAL ACCESS – Credential Theft Tool
 
 **Objective:**
 
@@ -472,7 +468,7 @@ Time: 2025-11-19T19:07:21.0804181Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image12.png" style="width:6.5in;height:2.09931in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 13: CREDENTIAL ACCESS – Memory Extraction Module**
+### 🚩Flag 13: CREDENTIAL ACCESS – Memory Extraction Module
 
 **Objective:**
 
@@ -512,7 +508,7 @@ Time: 2025-11-19T19:08:26.2804285Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image13.png" style="width:6.5in;height:2.17222in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 14: COLLECTION – Data Staging Archive**
+### 🚩Flag 14: COLLECTION – Data Staging Archive
 
 **Objective:**
 
@@ -552,7 +548,7 @@ Time: 2025-11-19T19:09:21.3267384Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image14.png" style="width:6.68618in;height:1.52465in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 15: EXFILTRATION – Exfiltration Channel**
+### 🚩Flag 15: EXFILTRATION – Exfiltration Channel
 
 **Objective:**
 
@@ -588,7 +584,7 @@ Time: 2025-11-19T19:09:21.3879432Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image15.png" style="width:6.5in;height:1.82153in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 16: ANTI-FORENSICS – Log Tampering**
+### 🚩Flag 16: ANTI-FORENSICS – Log Tampering
 
 **Objective:**
 
@@ -628,7 +624,7 @@ Time: 2025-11-19T19:11:39.0934399Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image16.png" style="width:6.5in;height:2.26042in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 17: IMPACT – Persistence Account**
+### 🚩Flag 17: IMPACT – Persistence Account
 
 **Objective:**
 
@@ -668,7 +664,7 @@ Time: 2025-11-19T19:09:53.0528848Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image17.png" style="width:6.5in;height:2.55208in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 18: EXECUTION – Malicious Script**
+### 🚩Flag 18: EXECUTION – Malicious Script
 
 **Objective:**
 
@@ -710,7 +706,7 @@ Time: 2025-11-19T18:49:48.7079818Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image18.png" style="width:6.5in;height:2.16667in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 19: LATERAL MOVEMENT – Secondary Target**
+### 🚩Flag 19: LATERAL MOVEMENT – Secondary Target
 
 **Objective:**
 
@@ -750,7 +746,7 @@ Time: 2025-11-19T19:10:37.2625077Z
 
 <img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image19.png" style="width:6.5in;height:1.88056in" alt="A screenshot of a computer AI-generated content may be incorrect." />
 
-**Flag 20: LATERAL MOVEMENT – Remote Access Tool**
+### 🚩Flag 20: LATERAL MOVEMENT – Remote Access Tool
 
 **Objective:**
 
@@ -811,3 +807,4 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
