@@ -19,6 +19,7 @@ The investigation confirms that this was a **highly coordinated, credential-base
 
 ---
 
+## Timeline of Events
 | **Time (UTC)** | **Stage** | **Event / Artifact** |
 |----|----|----|
 | 2025-11-19T18:30:00Z | INITIAL ACCESS – Remote Access Source (Flag 1) | Repeated RDP connection attempts originating from external IP **88.97.178.12** (source of initial access). |
@@ -45,7 +46,6 @@ The investigation confirms that this was a **highly coordinated, credential-base
 ---
 
 ## MITRE ATT&CK Mapping
-
 | Tactic | Technique | ID |
 |------|-----------|----|
 | Initial Access | External Remote Services (RDP), Valid Accounts | T1133, T1078 |
@@ -780,6 +780,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
