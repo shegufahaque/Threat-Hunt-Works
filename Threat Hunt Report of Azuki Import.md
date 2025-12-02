@@ -38,6 +38,23 @@ The investigation confirms that this was a **highly coordinated, credential-base
 | 2025-11-19T19:10:37.2625077Z | LATERAL MOVEMENT – Secondary Target (Flag 19) | Lateral movement attempts targeting internal IP **10.1.0.188** (cmdkey / mstsc usage). |
 | 2025-11-19T19:10:41.372526Z | LATERAL MOVEMENT – Remote Access Tool (Flag 20) | Use of **mstsc.exe** (Windows RDP client) to attempt remote desktop access to target system. |
 
+
+## MITRE ATT&CK Mapping
+
+| Tactic | Technique | ID |
+|------|-----------|----|
+| Initial Access | External Remote Services (RDP), Valid Accounts | T1133, T1078 |
+| Discovery | Network Discovery | T1046 |
+| Defense Evasion | Hidden Files & Directories, Modify Registry, Signed Binary Proxy Execution, Clear Windows Event Logs  | T1564.001, T1112, T1218.010, T1070.001 |
+| Persistence | Scheduled Task, Create Account | T1053.005, T1136 |
+| Command & Control | Web Protocols (HTTPS) | T1071.001 |
+| Credential Access | OS Credential Dumping (LSASS), OS Credential Dumping (Mimikatz - sekurlsa) | T1003.001 |
+| Collection | Archive Collected Data | T1560.001 |
+| Exfiltration | Exfiltration to Cloud Storage | T1567.002 |
+| Execution | PowerShell | T1059.001 |
+| Lateral Movement | Use of Alternate Authentication Material, RDP | T1550, T1021.001 |
+
+
 **🎯 Flag-by-Flag Findings**
 
 ### 🚩Flag 1: INITIAL ACCESS – Remote Access Source
@@ -756,6 +773,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
