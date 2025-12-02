@@ -69,7 +69,7 @@ Identifying the attacker’s entry point helps with attribution, blocking, and u
 
 **Flag Answer:** **88.97.178.12**
 
-<img width="1183" height="223" alt="image" src="https://github.com/user-attachments/assets/815ca096-1fe5-4620-9809-88516fa92bf4" />
+<img width="1191" height="251" alt="image" src="https://github.com/user-attachments/assets/2d29963a-bc7f-43f4-926b-4da51bacfdf8" />
 
 
 ### 🚩Flag 2: INITIAL ACCESS – Compromised User Account
@@ -170,7 +170,7 @@ Time: 2025-11-19T19:05:33.7665036Z
 
 **Flag Answer:** **C:\ProgramData\WindowsCache**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image4.png" style="width:6.5in;height:2.27431in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image4.png" style="width:6.5in;height:2.27431in"/>
 
 ### 🚩Flag 5: DEFENCE EVASION – File Extension Exclusions
 
@@ -201,7 +201,7 @@ Time: 2025-11-19T18:49:27.7301011Z
 
 **Flag Answer:** **3**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image5.png" style="width:6.53153in;height:1.16935in" alt="A screenshot of a computer program AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image5.png" style="width:6.53153in;height:1.16935in" />
 
 ### 🚩Flag 6: DEFENCE EVASION – Temporary Folder Exclusion
 
@@ -232,7 +232,7 @@ Time: 2025-11-19T18:49:27.6830204Z
 
 **Flag Answer:** **C:\Users\KENJI~1.SAT\AppData\Local\Temp**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image6.png" style="width:6.5in;height:1.81528in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image6.png" style="width:6.5in;height:1.81528in" />
 
 ### 🚩Flag 7: DEFENCE EVASION – Download Utility Abuse
 
@@ -264,7 +264,7 @@ Time: 2025-11-19T19:06:58.5778439Z
 
 **Flag Answer:** **certutil.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image7.png" style="width:6.5in;height:1.68611in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image7.png" style="width:6.5in;height:1.68611in" />
 
 ### 🚩Flag 8: PERSISTENCE – Scheduled Task Name
 
@@ -296,7 +296,7 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 **Flag Answer:** **Windows Update Check**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image8.png" style="width:6.5in;height:2.28125in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image8.png" style="width:6.5in;height:2.28125in" />
 
 ### 🚩Flag 9: PERSISTENCE – Scheduled Task Target
 
@@ -328,7 +328,7 @@ Time: 2025-11-19T19:07:46.9796512Z
 
 **Flag Answer:** **C:\ProgramData\WindowsCache\svchost.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image9.png" style="width:6.5in;height:2.15208in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image9.png" style="width:6.5in;height:2.15208in" />
 
 ### 🚩Flag 10: COMMAND & CONTROL – C2 Server Address
 
@@ -358,7 +358,7 @@ Time: 2025-11-19T19:06:58.7993762Z
 
 **Flag Answer:** **78.141.196.6**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image10.png" style="width:6.31491in;height:1.33169in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image10.png" style="width:6.31491in;height:1.33169in" />
 
 ### 🚩Flag 11: COMMAND & CONTROL – C2 Communication Port
 
@@ -394,7 +394,7 @@ Time: 2025-11-19T19:11:04.1766386Z
 
 **Flag Answer: 443**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image11.png" style="width:6.53171in;height:0.90678in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image11.png" style="width:6.53171in;height:0.90678in" />
 
 ### 🚩Flag 12: CREDENTIAL ACCESS – Credential Theft Tool
 
@@ -434,7 +434,7 @@ Time: 2025-11-19T19:07:21.0804181Z
 
 **Flag Answer: mm.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image12.png" style="width:6.5in;height:2.09931in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image12.png" style="width:6.5in;height:2.09931in" />
 
 ### 🚩Flag 13: CREDENTIAL ACCESS – Memory Extraction Module
 
@@ -474,7 +474,7 @@ Time: 2025-11-19T19:08:26.2804285Z
 
 **Flag Answer: sekurlsa::logonpasswords**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image13.png" style="width:6.5in;height:2.17222in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image13.png" style="width:6.5in;height:2.17222in" />
 
 ### 🚩Flag 14: COLLECTION – Data Staging Archive
 
@@ -514,7 +514,7 @@ Time: 2025-11-19T19:09:21.3267384Z
 
 **Flag Answer: export-data.zip**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image14.png" style="width:6.68618in;height:1.52465in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image14.png" style="width:6.68618in;height:1.52465in" />
 
 ### 🚩Flag 15: EXFILTRATION – Exfiltration Channel
 
@@ -550,7 +550,7 @@ Time: 2025-11-19T19:09:21.3879432Z
 
 **Flag Answer: discord**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image15.png" style="width:6.5in;height:1.82153in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image15.png" style="width:6.5in;height:1.82153in" />
 
 ### 🚩Flag 16: ANTI-FORENSICS – Log Tampering
 
@@ -590,7 +590,7 @@ Time: 2025-11-19T19:11:39.0934399Z
 
 **Flag Answer: Security**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image16.png" style="width:6.5in;height:2.26042in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image16.png" style="width:6.5in;height:2.26042in" />
 
 ### 🚩Flag 17: IMPACT – Persistence Account
 
@@ -630,7 +630,7 @@ Time: 2025-11-19T19:09:53.0528848Z
 
 **Flag Answer: support**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image17.png" style="width:6.5in;height:2.55208in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image17.png" style="width:6.5in;height:2.55208in" />
 
 ### 🚩Flag 18: EXECUTION – Malicious Script
 
@@ -672,7 +672,7 @@ Time: 2025-11-19T18:49:48.7079818Z
 
 **Flag Answer: wupdate.ps1**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image18.png" style="width:6.5in;height:2.16667in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image18.png" style="width:6.5in;height:2.16667in" />
 
 ### 🚩Flag 19: LATERAL MOVEMENT – Secondary Target
 
@@ -712,7 +712,7 @@ Time: 2025-11-19T19:10:37.2625077Z
 
 **Flag Answer: 10.1.0.188**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image19.png" style="width:6.5in;height:1.88056in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image19.png" style="width:6.5in;height:1.88056in" />
 
 ### 🚩Flag 20: LATERAL MOVEMENT – Remote Access Tool
 
@@ -752,7 +752,7 @@ Time: 2025-11-19T19:10:41.372526Z
 
 **Flag Answer: mstsc.exe**
 
-<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image20.png" style="width:6.5in;height:2.21944in" alt="A screenshot of a computer AI-generated content may be incorrect." />
+<img src="C:\Users\Spring23\Desktop\Threat Hunt Report of Azuki Import_media/media/image20.png" style="width:6.5in;height:2.21944in" />
 
 **🚨 After Action Recommendations**
 
@@ -775,6 +775,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
