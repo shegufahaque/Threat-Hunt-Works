@@ -1,4 +1,4 @@
-**<u>Threat Hunt Report of Compromised IT Admin Workstation (Azuki Import/Export)</u>**
+#  Threat Hunt Report of Compromised IT Admin Workstation (Azuki Import/Export)
 
 **Incident Date:** 19 November, 2025  
 **Analyst:** Shegufa Haque  
@@ -780,6 +780,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
