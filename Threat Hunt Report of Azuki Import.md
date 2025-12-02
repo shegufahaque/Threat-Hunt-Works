@@ -150,23 +150,18 @@ Malware was staged in **C:\ProgramData\WindowsCache**, a hidden directory create
 **Evidence:**  
 Execution of directory creation commands followed by attribute modifications (e.g., “attrib +h”) indicates intentional hiding of this folder.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine matches regex @"(mkdir\|md\|New-Item).\*"
-
-      or ProcessCommandLine contains "attrib"
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine matches regex @"(mkdir|md|New-Item).*" 
+or ProcessCommandLine contains "attrib" 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**  
 Attackers typically use hidden staging directories to store payloads, tools, and exfiltrated data, making detection more difficult.
@@ -188,19 +183,16 @@ Three malicious file extensions were added to Windows Defender’s exclusion lis
 **Evidence:**  
 Registry modifications under *Windows Defender\Exclusions\Extensions* indicate multiple extension entries added during the attack.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceRegistryEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where RegistryKey contains "Windows Defender" and RegistryKey contains "Exclusions"
-
-\| where ActionType == "RegistryValueSet"
-
-\| project Timestamp, DeviceName, ActionType, RegistryKey, RegistryValueName
+```kql
+DeviceRegistryEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where RegistryKey contains "Windows Defender" and RegistryKey contains "Exclusions" 
+| where ActionType == "RegistryValueSet" 
+| project Timestamp, DeviceName, ActionType, RegistryKey, RegistryValueName 
+```
 
 **Why this matters:**  
 Extension exclusions allow malware with specific file types to evade detection, giving attackers uninterrupted execution capability.
@@ -222,19 +214,16 @@ The temporary directory **C:\Users\KENJI~1.SAT\AppData\Local\Temp** was excluded
 **Evidence:**  
 Registry entries under *Windows Defender\Exclusions\Paths* show this folder added during the attack timeline.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceRegistryEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where RegistryKey contains "Windows Defender" and RegistryKey contains "Exclusions"
-
-\| where ActionType == "RegistryValueSet"
-
-\| project Timestamp, DeviceName, ActionType, RegistryKey, RegistryValueName
+```kql
+DeviceRegistryEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where RegistryKey contains "Windows Defender" and RegistryKey contains "Exclusions" 
+| where ActionType == "RegistryValueSet" 
+| project Timestamp, DeviceName, ActionType, RegistryKey, RegistryValueName
+```
 
 **Why this matters:**  
 Excluding temporary folders allows attackers to freely download, extract, and execute tooling without triggering antivirus detection.
@@ -256,21 +245,17 @@ The attacker used **certutil.exe**, a legitimate Windows utility, to download ex
 **Evidence:**  
 DeviceProcessEvents showed execution of certutil with command-line parameters containing URLs and output file paths.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains "url"
-
-\| where FileName endswith ".exe"
-
-\| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "url" 
+| where FileName endswith ".exe" 
+| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```
 
 **Why this matters:**  
 Certutil is commonly used for living-off-the-land (LOLBIN) activity, allowing attackers to bypass security controls and blend in with legitimate processes.
@@ -292,21 +277,17 @@ The attacker created a scheduled task named **"Windows Update Check"** to execut
 **Evidence:**  
 A schtasks.exe command with the /create flag was detected, referencing the task name.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains ""
-
-\| where FileName endswith "schtasks.exe"
-
-\| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "" 
+| where FileName endswith "schtasks.exe" 
+| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```
 
 **Why this matters:**  
 Scheduled tasks provide reliable persistence across reboots and are a common method used by attackers to maintain long-term access.
@@ -328,21 +309,17 @@ The scheduled task launched the malware located at **C:\ProgramData\WindowsCache
 **Evidence:**  
 The /tr argument in the schtasks command specified this executable as the task’s action.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains ""
-
-\| where FileName endswith "schtasks.exe"
-
-\| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "" 
+| where FileName endswith "schtasks.exe" 
+| project Timestamp, FileName, FolderPath, InitiatingProcessFileName, ActionType, ProcessCommandLine
+```
 
 **Why this matters:**  
 Identifying the payload executed by the scheduled task confirms the malware path and assists in full remediation.
@@ -364,17 +341,15 @@ The C2 server contacted by the malicious process was **78.141.196.6**.
 **Evidence:**  
 Outbound network connections initiated by certutil.exe pointed to this external IP.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceNetworkEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where InitiatingProcessFileName contains "certutil.exe"
-
-\| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort
+```kql
+DeviceNetworkEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where InitiatingProcessFileName contains "certutil.exe" 
+| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort
+```
 
 **Why this matters:**  
 Identifying the C2 server allows for blocking, threat intelligence correlation, and detection of further activity tied to the attacker infrastructure.
@@ -800,5 +775,6 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
