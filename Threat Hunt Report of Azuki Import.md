@@ -5,6 +5,8 @@
 **Compromised Host:** azuki-sl  
 **Compromised Account:** kenji.sato
 
+---
+
 **📌 Executive Summary**
 
 Between **19–20 November 2025 (UTC)**, Azuki Import/Export Co. experienced a targeted compromise resulting in the theft of sensitive supplier pricing data and shipping contract information. The investigation—supported entirely by **Microsoft Defender for Endpoint telemetry**—revealed a structured, multi-stage intrusion that progressed through every phase of the **full intrusion lifecycle**: *Initial Access → Execution → Persistence → Privilege Escalation → Credential Access → Discovery → Lateral Movement → Collection → Command & Control → Exfiltration → Anti-Forensics → Impact.*
@@ -14,6 +16,8 @@ Analysis confirmed that the attacker gained initial access by executing a malici
 The attacker staged internal contracts and pricing data, compressed them into a ZIP archive, and exfiltrated the data using the **Discord web service**, blending malicious activity with legitimate HTTPS traffic over port **443**. The adversary then attempted to destroy forensic evidence by clearing key event logs and created a hidden **backdoor account (support)** to maintain persistent access. Lateral movement operations targeted an internal system at **10.1.0.188**, using built-in RDP tooling (mstsc.exe) to avoid detection.
 
 The investigation confirms that this was a **highly coordinated, credential-based intrusion** involving data theft and anti-forensic actions. While exfiltrated data likely included sensitive pricing and supplier contract files, containment actions and further forensic follow-up can limit persistent exposure.
+
+---
 
 | **Time (UTC)** | **Stage** | **Event / Artifact** |
 |----|----|----|
@@ -38,6 +42,7 @@ The investigation confirms that this was a **highly coordinated, credential-base
 | 2025-11-19T19:10:37.2625077Z | LATERAL MOVEMENT – Secondary Target (Flag 19) | Lateral movement attempts targeting internal IP **10.1.0.188** (cmdkey / mstsc usage). |
 | 2025-11-19T19:10:41.372526Z | LATERAL MOVEMENT – Remote Access Tool (Flag 20) | Use of **mstsc.exe** (Windows RDP client) to attempt remote desktop access to target system. |
 
+---
 
 ## MITRE ATT&CK Mapping
 
@@ -54,6 +59,7 @@ The investigation confirms that this was a **highly coordinated, credential-base
 | Execution | PowerShell | T1059.001 |
 | Lateral Movement | Use of Alternate Authentication Material, RDP | T1550, T1021.001 |
 
+---
 
 **🎯 Flag-by-Flag Findings**
 
@@ -751,6 +757,7 @@ Time: 2025-11-19T19:10:41.372526Z
 
 <img width="1134" height="381" alt="image" src="https://github.com/user-attachments/assets/db547b55-9cdf-4943-bfdf-9e4e7351f719" />
 
+---
 
 **🚨 After Action Recommendations**
 
@@ -773,6 +780,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
