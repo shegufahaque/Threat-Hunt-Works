@@ -374,17 +374,15 @@ The attacker’s malware connected to the C2 server over port **443**, disguisin
 
 Outbound connections from the compromised host (azuki-sl) to the C2 IP 78.141.196.6 showed RemotePort 443.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceNetworkEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where RemoteIP == "78.141.196.6"
-
-\| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort
+```kql
+DeviceNetworkEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where RemoteIP == "78.141.196.6" 
+| project Timestamp, DeviceName, InitiatingProcessAccountName, ActionType, RemoteIP, RemotePort
+```
 
 **Why this matters:**
 
@@ -410,21 +408,17 @@ The attacker downloaded a renamed credential-dumping tool named **mm.exe** into 
 
 Process creation logs show certutil.exe downloading mm.exe, a short and suspiciously named executable.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains "certutil.exe"
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "certutil.exe" 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -450,21 +444,17 @@ The module sekurlsa::logonpasswords was invoked using the attacker’s credentia
 
 Command line arguments of mm.exe show invocation of the Mimikatz command sekurlsa::logonpasswords.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains "mm.exe"
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "mm.exe" 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -490,21 +480,17 @@ The attacker created a ZIP archive named **export-data.zip** within the staging 
 
 Process logs show .zip file creation via PowerShell’s Compress-Archive.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains ".zip"
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains ".zip" 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -530,17 +516,16 @@ The attacker used **Discord** as the exfiltration platform.
 
 Outbound HTTPS requests and tool command lines indicated uploads to Discord, a common covert C2 and exfiltration method.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceNetworkEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where InitiatingProcessCommandLine has_any ("https", "curl")
-
-\| project Timestamp, DeviceName, InitiatingProcessAccountName, Protocol, InitiatingProcessCommandLine, RemoteIP, RemotePort
+```kql
+DeviceNetworkEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where InitiatingProcessCommandLine has_any ("https", "curl") 
+| project Timestamp, DeviceName, InitiatingProcessAccountName, Protocol, 
+InitiatingProcessCommandLine, RemoteIP, RemotePort
+```
 
 **Why this matters:**
 
@@ -566,21 +551,17 @@ The attacker cleared the **Security** event log first using wevtutil.exe.
 
 Process logs show execution of wevtutil.exe cl Security, appearing earliest in the log-clearing sequence.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine contains "wevtutil.exe"
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine contains "wevtutil.exe" 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -606,21 +587,17 @@ The attacker created a new backdoor account named **support**.
 
 net user support /add followed by adding the account to Administrators was logged in DeviceProcessEvents.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine has_any ("net", "Administrators")
-
-\| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine has_any ("net", "Administrators") 
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -646,23 +623,18 @@ The script **wupdate.ps1** was created and executed from a temporary/staging fol
 
 File creation logs show the PowerShell script being written to Temp/AppData/ProgramData directories.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceFileEvents
-
-\| where DeviceName contains "azuki-sl"
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where ActionType == "FileCreated"
-
-\| where FileName endswith ".ps1"
-
-\| where FolderPath has_any ("Temp", "AppData", "ProgramData")
-
-\| project Timestamp, DeviceName, FileName, FolderPath
-
-\| order by Timestamp asc
+```kql
+DeviceFileEvents 
+| where DeviceName contains "azuki-sl" 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where ActionType == "FileCreated" 
+| where FileName endswith ".ps1" 
+| where FolderPath has_any ("Temp", "AppData", "ProgramData") 
+| project Timestamp, DeviceName, FileName, FolderPath 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -688,21 +660,17 @@ The attacker targeted the internal system **10.1.0.188** using cmdkey and mstsc.
 
 Command lines showed credential caching (cmdkey) and remote desktop commands (mstsc) referencing 10.1.0.188.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where DeviceName contains "azuki-sl"
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine has_any ("cmdkey", "mstsc")
-
-\| project Timestamp, DeviceName, FileName, ProcessCommandLine, ProcessRemoteSessionIP
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where DeviceName contains "azuki-sl" 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine has_any ("cmdkey", "mstsc") 
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, ProcessRemoteSessionIP 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -728,21 +696,17 @@ The attacker used **mstsc.exe**, the built-in Windows Remote Desktop Client.
 
 Process logs captured mstsc.exe invocations with remote IP arguments.
 
-**Query Used:**
+**KQL Query Used:**
 
-DeviceProcessEvents
-
-\| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20))
-
-\| where DeviceName contains "azuki-sl"
-
-\| where AccountName == "kenji.sato"
-
-\| where ProcessCommandLine has_any ("cmdkey", "mstsc")
-
-\| project Timestamp, DeviceName, FileName, ProcessCommandLine, ProcessRemoteSessionIP
-
-\| order by Timestamp asc
+```kql
+DeviceProcessEvents 
+| where Timestamp between (datetime(2025-11-19) .. datetime(2025-11-20)) 
+| where DeviceName contains "azuki-sl" 
+| where AccountName == "kenji.sato" 
+| where ProcessCommandLine has_any ("cmdkey", "mstsc") 
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, ProcessRemoteSessionIP 
+| order by Timestamp asc
+```
 
 **Why this matters:**
 
@@ -775,6 +739,7 @@ Time: 2025-11-19T19:10:41.372526Z
 - **Enable event log forwarding & tamper alerts** to detect any future log clearing attempts.
 
 - **Perform a full lateral movement scoping** on the targeted host 10.1.0.188 to ensure the attacker did not compromise it.
+
 
 
 
